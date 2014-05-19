@@ -1,0 +1,356 @@
+/*function add_asset(){
+
+		if($this->session->userdata('is_logged_in')){
+			
+
+			$this->form_validation->set_rules('asset_code', 'Asset Code', 'xss_clean');
+			$this->form_validation->set_rules('item', 'Item', 'xss_clean');
+			$this->form_validation->set_rules('mac_address', 'MAC Address', 'xss_clean');
+			$this->form_validation->set_rules('ip_address', 'IP Address', 'xss_clean');
+			$this->form_validation->set_rules('serial', 'Serial', 'xss_clean');
+			$this->form_validation->set_rules('brand', 'Brand', 'xss_clean');
+			$this->form_validation->set_rules('model', 'Model', 'xss_clean');
+			$this->form_validation->set_rules('type', 'Type', 'xss_clean');
+			$this->form_validation->set_rules('version', 'Version', 'xss_clean');
+			$this->form_validation->set_rules('processor', 'Processor', 'xss_clean');
+			$this->form_validation->set_rules('hard_drive_cap', 'Hard Drive Capacity', 'xss_clean');
+			$this->form_validation->set_rules('ram_cap_type', 'RAM Capacity/Type', 'xss_clean');
+			$this->form_validation->set_rules('quick_spec', 'Quick Spec', 'xss_clean');
+			$this->form_validation->set_rules('assignee', 'Assignee', 'xss_clean');
+			$this->form_validation->set_rules('title', 'Title', 'xss_clean');
+			$this->form_validation->set_rules('station_number', 'Station', 'xss_clean');
+			$this->form_validation->set_rules('location', 'Location', 'xss_clean');
+			$this->form_validation->set_rules('ipcam_location', 'IP Cam Location', 'xss_clean');
+			$this->form_validation->set_rules('date_purchase', 'Date Purchase', 'xss_clean');
+			//$this->form_validation->set_rules('location', 'Location', 'xss_clean');
+			$this->form_validation->set_rules('condition', 'Condition', 'xss_clean');
+			$this->form_validation->set_rules('note', 'Note', 'xss_clean');
+
+			
+			$category = $this->input->post('asset_category');
+			$asset = strtoupper($this->input->post('asset_code'));
+			if ($this->form_validation->run() == true)
+			{	
+
+				if($category == '255mmadapter'){
+
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => (strtoupper($this->input->post('model'))), 
+						'serial' => $this->input->post('serial'), 
+						'location' => $this->input->post('location'), 
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'desktop'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'mac_address' => $this->input->post('mac_address'),  
+						'ip_address' => $this->input->post('ip_address'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'),
+						'processor' => $this->input->post('processor'),
+						'hard_drive_cap' => $this->input->post('hard_drive_cap'),
+						'ram_cap_type' => $this->input->post('ram_cap_type'), 
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'gadget'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'mac_address' => $this->input->post('mac_address'),
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'),
+						'model' => $this->input->post('model'),
+						'serial' => $this->input->post('serial'),
+						'quick_spec' => $this->input->post('quick_spec'),
+						'assignee' => $this->input->post('assignee'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'headset'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'),
+						'model' => $this->input->post('model'),  
+						'serial' => (strtoupper($this->input->post('serial'))),
+						'type' => $this->input->post('type'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'ip_camera'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'ip_address' => $this->input->post('ip_address'), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'), 
+						'serial' => (strtoupper($this->input->post('serial'))),
+						'location' => $this->input->post('location'),
+						'date_purchase' => (strtoupper($this->input->post('date_purchase'))),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'keyboard'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'ip_address' => $this->input->post('ip_address'), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'),
+						'location' => $this->input->post('location'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'laptop'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'mac_address' => $this->input->post('mac_address'),  
+						'ip_address' => $this->input->post('ip_address'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'),
+						'processor' => $this->input->post('processor'),
+						'hard_drive_cap' => $this->input->post('hard_drive_cap'),
+						'ram_cap_type' => $this->input->post('ram_cap_type'), 
+						'location' => $this->input->post('location'),
+						'assignee' => $this->input->post('assignee'),
+						'title' => $this->input->post('title'),	
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+					);
+				}
+				elseif($category == 'memory'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'ip_address' => $this->input->post('ip_address'), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'),						 
+						'serial' => (strtoupper($this->input->post('serial'))),
+						'ram_cap_type' => $this->input->post('ram_cap_type'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}	
+				elseif($category == 'msoffice_cd'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'item' => $this->input->post('item'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'msoffice_license'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'brand' => $this->input->post('brand'), 
+						'version' => $this->input->post('version'), 
+						'serial' => $this->input->post('serial'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'mobile_phone'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'),
+						'model' => $this->input->post('model'),
+						'assignee' => $this->input->post('assignee'), 
+						'quick_spec' => $this->input->post('quick_spec'),
+						'IMEI' => $this->input->post('IMEI'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'location' => $this->input->post('location'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'monitor'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'),						 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'type' => $this->input->post('type'),
+						'location' => $this->input->post('location'),						
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'network_equipment'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'ip_address' => $this->input->post('ip_address'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'), 
+						'type' => $this->input->post('type'),
+						'location' => $this->input->post('location'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'printer'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'),
+						'location' => $this->input->post('location'), 
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'usb_adapter'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'ip_address' => $this->input->post('ip_address'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'), 
+						'type' => $this->input->post('type'),
+						'location' => $this->input->post('location'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'videocard'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),						 
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'voiphone'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))),
+						'mac_address' => $this->input->post('mac_address'),  
+						'ip_address' => $this->input->post('ip_address'), 
+						'serial' => (strtoupper($this->input->post('serial'))), 
+						'brand' => $this->input->post('brand'),
+						'model' =>$this->input->post('model'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'webcam'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'), 
+						'model' => $this->input->post('model'), 
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'status' => $this->input->post('status'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+				elseif($category == 'yjack'){
+					$data = array(
+						'asset_code' => (strtoupper($this->input->post('asset_code'))), 
+						'brand' => $this->input->post('brand'),
+						'location' => $this->input->post('location'),
+						'station' => $this->input->post('station_number'),
+						'status' => $this->input->post('status'),
+						'date_purchase' => $this->input->post('date_purchase'),
+						'note' => $this->input->post('note'),
+						'date_added' => date('Y-m-d H:i:s'),
+						
+					);
+				}
+
+				else{
+					echo 'Invalid category';
+				}
+			
+				
+			}
+			if ($this->form_validation->run() == true &&  $this->manage_model->add_asset($data,$category) && $this->manage_model->asset_list($asset, $category) )
+			{ 
+			
+		 		
+		 		$this->data['message'] = $this->session->set_flashdata('message','<div class="alert  alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Added successfully.</div>');
+		 		redirect(base_url().'asset/add_asset');
+			}
+			else
+			{ 
+
+				//display the create user form
+				//set the flash data error message if there is one
+				$this->data['message'] = (validation_errors() ? validation_errors() : ($this->session->flashdata('message')));
+			   
+				$this->load->view('addasset_view',$this->data);
+
+				
+			}
+	 
+			}
+		else 
+		{
+			$this->load->view('login_view');
+		}
+	
+	}
+*/
